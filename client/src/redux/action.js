@@ -30,7 +30,7 @@ export const setLoading = (loading) => {
 export const getAllGames = () => async (dispatch) => {
   try {
     dispatch(setLoading(true));
-    const response = await axios.get('http://localhost:3001/videogames');
+    const response = await axios.get('https://videogames-server-u194.onrender.com/videogames');
     const videoGames = response.data;
 
     dispatch({ type: GET_ALL_GAMES, payload: videoGames });
@@ -68,7 +68,7 @@ export const setItems = (items) => {
 
 export const getAllGenres = () => (dispatch) => {
   return axios
-    .get('http://localhost:3001/genres')
+    .get('https://videogames-server-u194.onrender.com/genres')
     .then((res) => {
       dispatch({ type: GET_ALL_GENRES, payload: res.data });
     })
@@ -82,7 +82,7 @@ export const searchByName = (name) => {
     try {
       dispatch(setLoading(true));
       const res = await axios.get(
-        `http://localhost:3001/videogames/name?search=${name}`
+        `https://videogames-server-u194.onrender.com/videogames/name?search=${name}`
       );
       const results = res.data;
       const totalPages = Math.ceil(results.length / PAGE_SIZE);
@@ -106,7 +106,7 @@ export const getDetail = (id) => {
   return async (dispatch) => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/videogames/${id}`
+        `https://videogames-server-u194.onrender.com/videogames/${id}`
       );
 
       dispatch({ type: GET_DETAIL, payload: response.data });
@@ -126,7 +126,7 @@ export const clearDetail = () => {
 export const postVideoGame = (gameData) => async (dispatch) => {
   try {
     const response = await axios.post(
-      'http://localhost:3001/videogames/create',
+      'https://videogames-server-u194.onrender.com/create',
       gameData
     );
 
